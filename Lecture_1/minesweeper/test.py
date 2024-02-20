@@ -1,35 +1,32 @@
 from minesweeper import *
 
-s = Sentence(cells={'A1', 'B2', 'C3'}, count=3)
-print(Sentence.known_mines)
-print(s)
+s1 = Sentence(cells={'A1', 'B2', 'C3'}, count=3)
+s2 = Sentence(cells={'A1', 'B3', 'C1'}, count=3)
+s3 = Sentence(cells={'A2', 'B5', 'C2'}, count=3)
+sentences = [s1, s2, s3]
+for sentence in sentences:
+    print(f"Sentence: {sentence}\n")
+    mines = sentence.known_mines()
+    for mine in mines:
+        print(f"Mine: {mine}\n")
+    safes = sentence.known_safes()
+    for safe in safes:
+        print(f"Safe: {safe}\n")
 
-def test_add_knowledge():
-    ai = MinesweeperAI()
+s1.mark_safe('A1')
 
-    # Add some initial knowledge
-    ai.add_knowledge((0, 0), 1)
-    ai.add_knowledge((1, 1), 2)
-    ai.add_knowledge((2, 2), 0)
+print("\n")
+for sentence in sentences:
+    print(f"Sentence: {sentence}\n")
+    mines = sentence.known_mines()
+    for mine in mines:
+        print(f"Mine: {mine}\n")
+    safes = sentence.known_safes()
+    for safe in safes:
+        print(f"Safe: {safe}\n")
 
-    # Check if initial knowledge has been added correctly
-    assert len(ai.knowledge) == 3
 
-    # Add some more knowledge
-    ai.add_knowledge((0, 1), 0)
-    ai.add_knowledge((1, 2), 1)
+ai = MinesweeperAI()
+print(ai.make_safe_move())
+print(ai.make_random_move())
 
-    # Check if new knowledge has been added correctly
-    assert len(ai.knowledge) == 5
-
-    # Add redundant knowledge
-    ai.add_knowledge((0, 0), 1)
-    ai.add_knowledge((1, 1), 2)
-
-    # Check if redundant knowledge has been ignored
-    assert len(ai.knowledge) == 5
-
-    print("All tests passed!")
-
-# Run the test
-test_add_knowledge()

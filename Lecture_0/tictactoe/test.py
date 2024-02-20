@@ -4,9 +4,9 @@ EMPTY = None
 x = "X"
 o = "O"
 
-board = [[x, EMPTY, EMPTY],
-        [EMPTY, EMPTY, EMPTY],
-        [EMPTY, EMPTY, EMPTY]]
+board = [[x, o, x],
+        [o, o, o],
+        [x, o, x]]
 
 print(f"Player: {player(board)}\n")
 
@@ -20,8 +20,8 @@ print(f"Winner: {winner(board)}\n")
 
 print(f"Terminal: {terminal(board)}\n")
 
-print(f"Max-Val: {max_value(board)}\n")
-print(f"Min-Val: {min_value(board)}\n")
+#print(f"Max-Val: {max_value(board)}\n")
+#print(f"Min-Val: {min_value(board)}\n")
 
 print(f"Best action: {minimax(board)}\n")
 
